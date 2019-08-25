@@ -13,27 +13,27 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 #
-#  A Simple Steady-State, Real-Coded Genetic Algorithm       
+#  A Simple Steady-State, Real-Coded Genetic Algorithm
 #
-    
+
 class anIndividual:
     def __init__(self, specified_chromosome_length):
         self.chromosome = []
         self.fitness    = 0
         self.chromosome_length = specified_chromosome_length
-        
+
     def randomly_generate(self,lb, ub):
         for i in range(self.chromosome_length):
             self.chromosome.append(random.uniform(lb, ub))
         self.fitness = 0
-    
+
     def calculate_fitness(self):
         x2y2 = self.chromosome[0]**2 + self.chromosome[1]**2
         self.fitness = 0.5 + (math.sin(math.sqrt(x2y2))**2 - 0.5) / (1+0.001*x2y2)**2
 
     def print_individual(self, i):
         print("Chromosome "+str(i) +": " + str(self.chromosome) + " Fitness: " + str(self.fitness))
-      
+
 class aSimpleExploratoryAttacker:
     def __init__(self, population_size, chromosome_length, mutation_rate, lb, ub):
         if (population_size < 2):
@@ -49,7 +49,7 @@ class aSimpleExploratoryAttacker:
         self.hacker_tracker_x = []
         self.hacker_tracker_y = []
         self.hacker_tracker_z = []
-        
+
     def generate_initial_population(self):
         for i in range(self.population_size):
             individual = anIndividual(self.chromosome_length)
@@ -59,16 +59,16 @@ class aSimpleExploratoryAttacker:
             self.hacker_tracker_y.append(individual.chromosome[1])
             self.hacker_tracker_z.append(individual.fitness)
             self.population.append(individual)
-    
+
     def get_worst_fit_individual(self):
         worst_fitness = 999999999.0  # For Maximization
         worst_individual = -1
         for i in range(self.population_size):
-            if (self.population[i].fitness < worst_fitness): 
+            if (self.population[i].fitness < worst_fitness):
                 worst_fitness = self.population[i].fitness
                 worst_individual = i
         return worst_individual
-    
+
     def get_best_fitness(self):
         best_fitness = -99999999999.0
         best_individual = -1
@@ -77,7 +77,7 @@ class aSimpleExploratoryAttacker:
                 best_fitness = self.population[i].fitness
                 best_individual = i
         return best_fitness
-        
+
     def evolutionary_cycle(self):
         mom = random.randint(0,self.chromosome_length-1)
         dad = random.randint(0,self.chromosome_length-1)
@@ -93,11 +93,11 @@ class aSimpleExploratoryAttacker:
         self.hacker_tracker_x.append(self.population[kid].chromosome[0])
         self.hacker_tracker_y.append(self.population[kid].chromosome[1])
         self.hacker_tracker_z.append(self.population[kid].fitness)
-       
+
     def print_population(self):
         for i in range(self.population_size):
             self.population[i].print_individual(i)
-    
+
     def print_best_max_fitness(self):
         best_fitness = -999999999.0  # For Maximization
         best_individual = -1
@@ -106,7 +106,7 @@ class aSimpleExploratoryAttacker:
                 best_fitness = self.population[i].fitness
                 best_individual = i
         print("Best Indvidual: ",str(i)," ", self.population[i].chromosome, " Fitness: ", str(best_fitness))
-    
+
     def plot_evolved_candidate_solutions(self):
         fig = plt.figure()
         ax1 = fig.add_subplot(1,1,1,projection='3d')
@@ -147,9 +147,3 @@ simple_exploratory_attacker.print_population()
 simple_exploratory_attacker.print_best_max_fitness()
 print("Function Evaluations: " + str(PopSize+i))
 simple_exploratory_attacker.plot_evolved_candidate_solutions()
-
-
-
-
-
-    
