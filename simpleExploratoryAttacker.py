@@ -124,8 +124,8 @@ lb = -100.0
 MaxEvaluations = 4000
 plot = 1
 
-PopSize = 100
-mu_amt  = 0.0
+PopSize = 3
+mu_amt  = 0.01
 
 simple_exploratory_attacker = aSimpleExploratoryAttacker(PopSize,ChromLength,mu_amt,lb,ub)
 
@@ -135,8 +135,8 @@ simple_exploratory_attacker.print_population()
 for i in range(MaxEvaluations-PopSize+1):
     simple_exploratory_attacker.evolutionary_cycle()
     if (i % PopSize == 0):
-        if (plot == 1):
-            simple_exploratory_attacker.plot_evolved_candidate_solutions()
+        #if (plot == 1):
+            #simple_exploratory_attacker.plot_evolved_candidate_solutions()
         print("At Iteration: " + str(i))
         simple_exploratory_attacker.print_population()
     if (simple_exploratory_attacker.get_best_fitness() >= 0.99754):
@@ -146,4 +146,4 @@ print("\nFinal Population\n")
 simple_exploratory_attacker.print_population()
 simple_exploratory_attacker.print_best_max_fitness()
 print("Function Evaluations: " + str(PopSize+i))
-simple_exploratory_attacker.plot_evolved_candidate_solutions()
+#simple_exploratory_attacker.plot_evolved_candidate_solutions()
