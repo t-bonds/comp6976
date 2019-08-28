@@ -79,8 +79,8 @@ class aSimpleExploratoryAttacker:
         return best_fitness
 
     def evolutionary_cycle(self):
-        mom = random.randint(0,self.chromosome_length-1)
-        dad = random.randint(0,self.chromosome_length-1)
+        mom = random.randint(0,self.population_size-1)
+        dad = random.randint(0,self.population_size-1)
         kid = self.get_worst_fit_individual()
         for j in range(self.chromosome_length):
             self.population[kid].chromosome[j] = random.uniform(self.population[mom].chromosome[j],self.population[dad].chromosome[j])
