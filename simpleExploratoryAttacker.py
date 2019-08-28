@@ -125,7 +125,7 @@ MaxEvaluations = 4000
 plot = 1
 
 PopSize = 3
-mu_amt  = 0.01
+mu_amt  = 0.0075
 
 simple_exploratory_attacker = aSimpleExploratoryAttacker(PopSize,ChromLength,mu_amt,lb,ub)
 
