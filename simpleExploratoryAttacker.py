@@ -124,8 +124,8 @@ lb = -100.0
 MaxEvaluations = 4000
 plot = 1
 
-PopSize = 3
-mu_amt  = 0.0075
+PopSize = 90
+mu_amt  = 0.0005
 
 simple_exploratory_attacker = aSimpleExploratoryAttacker(PopSize,ChromLength,mu_amt,lb,ub)
 
